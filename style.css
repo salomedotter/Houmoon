@@ -28,6 +28,7 @@
     
         }
     }
+  
 
     html,
 body {
@@ -81,8 +82,8 @@ body {
 
 .poischiche-overlay {
   position: fixed;
-  top: 40%;
-  left: 20%;
+  top: 10%;
+  left: 10%;
   width: 30vw;
   transform: scale(0);
   transition: transform 1s ease-in-out;

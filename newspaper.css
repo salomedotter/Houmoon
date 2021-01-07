@@ -15,6 +15,7 @@ p {
   text-align: center;
   position: relative;
   background: white;
+  z-index: 5;
 }
 
 .headerobjectswrapper {
