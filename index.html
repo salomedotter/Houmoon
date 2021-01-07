@@ -1,0 +1,81 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css">
+    <title>HOUMOON</title>
+    
+  </head>
+
+  <body>
+
+  <video id="videoBG" autoplay muted loop>
+    <source src="video/start-couvercle.mp4" type="video/mp4">
+ </video>
+ <p>
+    HOUMOON
+    <span class="poischiche-word">POIS CHICHES</span> Versez une boîte de pois chiche
+  </p>
+
+  <img class="image-overlay" src="png/poischiche.png" />
+
+  <div class="button">
+    <img src="png/potentio.png" />
+  </div>
+  <script>
+    const button = document.querySelector(".button");
+    let mouseDown = false;
+    let startMouseY = 0;
+    let deltaY = 0;
+    let angle = 0;
+
+    button.addEventListener("mousedown", (event) => {
+      mouseDown = true;
+      startMouseY = event.clientY;
+    });
+
+    window.addEventListener("mouseup", () => {
+      mouseDown = false;
+      angle += deltaY;
+      deltaY = 0;
+      updateButtonRotation();
+    });
+
+    window.addEventListener("mousemove", (event) => {
+      deltaY = event.clientY - startMouseY;
+
+      if (mouseDown) {
+        updateButtonRotation();
+
+        const val = getCurrentAngle();
+        console.log(val);
+
+        if (val > 200 && val < 300) {
+          document.querySelector(".poischiche-word").style.color = "red";
+          document.querySelector(".poischiche-word").style.fontSize = "50px";
+        } else {
+          document.querySelector(".poischiche-word").style.color = "black";
+          document.querySelector(".poischiche-word").style.fontSize = "inherit";
+        }
+
+        if (val > 200 && val < 400) {
+          document.querySelector(".poischiche-overlay").style.transform =
+            "scale(1) rotate(360deg)";
+        } else {
+          document.querySelector(".poischiche-overlay").style.transform =
+            "scale(0) rotate(0)";
+        }
+      }
+    });
+
+    function getCurrentAngle() {
+      return angle + deltaY;
+    }
+
+    function updateButtonRotation() {
+      button.style.transform = `translate(-50%, -50%) rotate(${getCurrentAngle()}deg)`;
+    }
+  </script>
+
+</body>
+</html>
